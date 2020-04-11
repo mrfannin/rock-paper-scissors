@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Rock Paper Scissors</title>
+    </head>
+    <body>
+
+        <p>Play in console! :)</p>
+        
+        <script>
+
+            function computerPlay() {
+                let value = Math.floor(Math.random() * 3);
+
+                if (value == 0) 
+                {
+                    return "Rock";
+                }
+                else if (value == 1) 
+                {
+                    return "Paper";
+                }
+                else 
+                {
+                    return "Scissors";
+                }
+            }
+
+            function playRound(playerSelection, computerSelection) {
+                let playerWin = "";
+                
+                playerSelection = playerSelection.toLowerCase();
+                computerSelection = computerSelection.toLowerCase();
+
+                if (playerSelection == "rock")  
+                {
+                    if (computerSelection == "scissors")    
+                    {
+                        return "win";
+                    }
+                    else if (computerSelection == "rock")   
+                    {
+                        return "draw";
+                    }
+                    else 
+                    {
+                        return "lose";
+                    }
+                }
+                else if (playerSelection == "scissors")
+                {
+                    if (computerSelection == "paper")    
+                    {
+                        return "win";
+                    }
+                    else if (computerSelection == "scissors")   
+                    {
+                        return "draw";
+                    }
+                    else 
+                    {
+                        return "lose";
+                    }
+                }
+                else if (playerSelection == "paper")
+                {
+                    if (computerSelection == "rock")    
+                    {
+                        return "win";
+                    }
+                    else if (computerSelection == "paper")   
+                    {
+                        return "draw";
+                    }
+                    else 
+                    {
+                        return "lose";
+                    }
+                }
+            }
+
+            function game() {
+                let playerScore = 0;
+                let computerScore = 0;
+
+                for (let i = 0; i < 5; i++)
+                {
+                    let playerChoice = prompt('What is your choice? (type "rock", "paper", or "scissors")');
+                    let computerChoice = computerPlay();
+
+                    let result = playRound(playerChoice, computerChoice);
+
+                    if (result == "win")
+                    {
+                        playerScore++;
+                        console.log(`You Win! ${capitalizeFirstLetter(playerChoice)} beats ${capitalizeFirstLetter(computerChoice)}`);
+                    }
+                    else if (result == "draw") 
+                    {
+                       console.log(`It's a Draw! Both chose ${capitalizeFirstLetter(playerChoice)}`); 
+                    }
+                    else 
+                    {
+                        computerScore++;
+                        console.log(`You Lose! ${capitalizeFirstLetter(computerChoice)} beats ${capitalizeFirstLetter(playerChoice)}`);
+                    }                    
+                }
+
+                if (playerScore > computerScore)
+                {
+                    console.log(`You won the match!
+                                Your score: ${playerScore}
+                                Computer score: ${computerScore}`);
+                }
+                else if (playerScore == computerScore)
+                {
+                    console.log(`That match is a draw!
+                                Your score: ${playerScore}
+                                Computer score: ${computerScore}`);
+                }
+                else {
+                    console.log(`You lost the match!
+                                Your score: ${playerScore}
+                                Computer score: ${computerScore}`);
+                }
+            }
+
+            function capitalizeFirstLetter(str)
+            {
+                return str[0].toUpperCase() + str.slice(1).toLowerCase();
+            }
+
+        </script>
+    </body>
+</html>
